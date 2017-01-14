@@ -1,0 +1,115 @@
+
+<?php
+$ulogovan = Zend_Auth::getInstance();
+$user = $ulogovan->getIdentity()->idUloga;
+$userIme = $ulogovan->getIdentity()->imePrezime;
+
+$zauzeti = array();
+$svi = array();
+
+foreach ($this->dostupnost as $stavka1) {
+    $zauzeti[] = $stavka1['idAranzman'];
+}
+
+
+foreach ($this->prodaja as $stavka2) {
+    $svi[] = $stavka2['idAranzman'];
+}
+?>
+
+<div class="col-lg-12 col-md-12">
+
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#prvi" data-toggle="tab">Pregled rezervisanih</a>
+        </li>
+        <li class=""><a href="#drugi" data-toggle="tab">Svi aranzmani i rezervacija</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane fade active in" id="prvi">
+            <h3>Pregled rezervisanih aranzmana</h3><br>
+            <div class="col-lg-12">
+
+                <table class="table table-bordered">
+                    <tr class="table-striped">
+
+                        <th>Ime i prezime putnika</th>
+                        <th>Telefon</th> 
+                        <th>Drzava</th>
+                        <th>Mesto</th>
+                        <th>Smestaj</th>
+                        <th>Tip smestaja</th>
+                        <th>Termin od</th>
+                        <th>Termin do</th>
+                        <th>Datum rezervacije</th>
+                        <th>Napomena</th>
+                    </tr>
+                    <?php foreach ($this->rezervacije as $stavka) { ?>
+                        <tr>
+                            <td><?php print $stavka['imePrezime']; ?></td>
+                            <td><?php print $stavka['telefon']; ?></td>
+                            <td><?php print $stavka['drzava']; ?></td>
+                            <td><?php print $stavka['mesto']; ?></td>
+                            <td><?php print $stavka['smestaj']; ?></td>
+                            <td><?php print $stavka['vrstaSmestaja']; ?></td>
+                            <td><?php print $stavka['od']; ?></td>
+                            <td><?php print $stavka['do']; ?></td>
+                            <td><?php print $stavka['datumRezervacije']; ?></td>
+                            <td><?php print $stavka['napomena']; ?></td>
+                        </tr>
+                    <?php } ?>
+                </table>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="drugi">
+            <div class="col-lg-12">
+                <h3>SVI aranzmani</h3><br>
+                <table class="table table-bordered">                                
+                    <tr>
+                        <th>Kategorija</th>
+                        <th>Smestaj</th>
+                        <th>Tip smestaja</th>
+                        <th>Termin od</th>
+                        <th>Termin do</th>
+                        <th>Prevoz</th>
+                        <th>Cena</th>
+                        <th>DOSTUPNOST</th>
+                    </tr>
+                    <?php
+                    foreach ($this->prodaja as $stavka) {
+                        ?>
+                        <tbody>
+                            <tr class="table-striped">
+
+                                <td><?php print $stavka['naziv']; ?></td>
+                                <td><?php print $stavka['smestaj']; ?></td>
+                                <td><?php print $stavka['vrstaSmestaja']; ?></td>
+                                <td><?php print $stavka['od']; ?></td>
+                                <td><?php print $stavka['do']; ?></td>
+                                <td><?php print $stavka['prevoz']; ?></td>
+                                <td><?php print $stavka['cena']; ?></td>
+                               <?php
+                                $zauzeto="Slobodno";
+                                $clasa='style="color:green"';
+                                        foreach($zauzeti as $z){
+                                            if($stavka['idAranzman']==$z){
+                                               $zauzeto="Zauzeto";
+                                               $clasa='style="color:red"';
+                                            }
+                                        }
+                                        
+                                print'<td '.$clasa.'>'.$zauzeto; ?></td>
+
+                            </tr></tbody>
+                    <?php } ?> 
+          
+                    <?php
+                    echo $this->form;
+                    echo $this->status;
+                    ?>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,76 @@
+	<div id="wrapper">																																																																																																																														<div class="inner_copy"><a href="http://www.mgwebmaster.com/free-website-builders/">Best Free Website Builders - Choose Online Platform for...</a></div>
+	  <div id="left">
+			<div id="columns">
+                           
+                            
+                            
+                            
+                            <div class="column c2">
+					<div>
+                                            
+                                            <h4 class="title2">Popularna mesta</h4>
+                         <?php foreach($this->popularno as $stavka) {?>
+						<div class="pic">
+							<img src="<?php print $stavka['putanja'];?>" alt="" width="108" height="53" /><br />
+							<span><a href="#"><?php print $stavka['mesto'];?></a></span>
+						</div>
+		
+                            <?php } ?>
+                            		</div>
+				</div>
+                            
+                            
+                            
+                            
+                            
+                            
+				<div class="column c3">
+					<div>
+						<h4 class="title1">Popularne vile</h4>
+                                                
+						<ul>
+                                                    <?php foreach($this->popularnevile as $stavka) {?>
+							<li><a href="/aranzmani/prikaz/idSmestaj/<?php print $stavka['idSmestaj']; ?>" ><?php print $stavka['smestaj'];?></a></li>
+                                                    <?php } ?>
+						</ul>
+					</div>
+                                </div>
+			</div>
+			
+			<div class="text" style="padding-top: 350px;">
+                            <h1>Letovanje 2017</h1>
+				<p>
+                                    Koja je vaša sledeća destinacija?<br><br>
+ 
+                                    Letujte u nekom od najatraktivnijih letovališta <b>Grčke, Italije, Turske, Španije, Francuske, Egipta ...</b><br>
+Provedite nezaboravne dane na proverenim plažama, u šarmantnim i nesvakidašnjim primorskim mestima, probajte prepoznatljive specijalitete tamošnjih kuvara, upoznajte tuđe kulture, družite se sa lokalnim stanovništvom ... steknite nove prijatelje.
+Obezbedili smo odlične aranžmane koji uključuju autobuski i avionski prevoz (kao i mogućnost bukiranja smeštaja uz sopstveni prevoz), transfere koji će vam put učiniti lakšim, kvalitetan smeštaj, profesionalne vodiče i predstavnike koji će biti dostupni 24 sata da odgovore na sva vaša pitanja, pomognu kada je potrebno, upute na najpovoljnije ugostiteljske objekte, organizuju nezaboravne ekskurzije, skrenu pažnju na zanimljive detalje.
+<br><br>
+Naši turisti se godinama odlučuju za letovališta u Grčkoj.
+Istorijski lokaliteti i događaji koje pamti zajednička istorija, Jonsko i Egejsko more, peščane, uređene plaže za uživanje kao i neke manje dostupne za avanturiste, samo su neke od preporuka i razloga zbog kojih su ljudi širom sveta zaljubljenici u Grčku.
+                                </p> 
+                                    
+                                    
+                                    
+                                   
+			</div>
+		</div>
+		<div id="right">
+			<div>
+                            <h1>Naši aranžmani...</h1>
+				<p>
+                                Turistička ponuda agencije Viva svrstava se u najraznovrsniju i najpovoljniju. Organizujemo turističke obilaske najvećih svetskih metropola kao što su: Rim, Venecija, Milano, Pariz, Barselona, Madrid, Beč, Budimpešta, Prag, Istanbul, Minhen, Amsterdam, Lisabon, Moskva, Dubai… Kod nas možete naći i aranžmane za letnju i zimsku sezonu, daleke destinacije, krstarenja, izlete, grupne i individualne programe, avio karte, hotelski smeštaj, rent a car. Takođe, organizujemo studentske i školske ekskurzije, kao i team building putovanja.
+                                
+                                </p>
+			</div>
+			<div>
+				<?php foreach($this->popularnevile as $stavka) {?>
+				<div class="photo">
+					<img src="<?php print $stavka['thumbPutanja']; ?>" alt="" width="194" height="111" /><br />
+					<a href="/aranzmani/prikaz-leto/idSmestaj/<?php print $stavka['idSmestaj']; ?>" ><?php print $stavka['smestaj'];?></a>			  
+				</div> <?php } ?>
+				
+			</div>
+			
+		</div>
+	</div>

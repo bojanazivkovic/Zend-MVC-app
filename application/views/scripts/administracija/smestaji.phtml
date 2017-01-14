@@ -1,0 +1,54 @@
+<div style="align:center;margin-left: 50px;">  
+    <p><a href="<?php echo $this->url(array('controller' => 'administracija', 'action' => 'novi-smestaj')); ?>">UNESI NOVI SMESTAJ</a></p>
+
+    <h2>Izmena naziva i opisa smestaja</h2>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th> <i>Smestaj</i>
+                    </th>
+                    <th>
+                        <i> Mesto </i>
+                    </th>
+                     <th>
+                        <i> Kategorija </i>
+                    </th>
+                    <th>
+                        <i> Obriši </i>
+                    </th>
+                    <th>
+                        <i>Izmeni </i>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                foreach ($this->dohvati_smestaje as $ds) {
+                    echo '<tr class="table-striped">';
+                    echo '<td class="naslov_smestaja"  width="20%" style="border: 1px solid black;">';
+                    echo $ds['smestaj'];
+                    echo '</td>';
+                   
+                    echo '<td class="mesto" width="10%" style="border: 1px solid black;">';
+                    echo $ds['mesto'];
+                    echo '</td>';
+                    echo '<td class="kat" width="10%" style="border: 1px solid black;">';
+                    echo $ds['naziv'];
+                    echo '</td>';
+                    echo '<td width="5%" style="border: 1px solid black;">';
+                    echo '<a href="/administracija/obrisi-smestaj/idSmestaj/' . $ds['idSmestaj']. '">Obriši</a>';
+                    echo '</td>';
+                     echo '<td width="5%" style="border: 1px solid black;">';
+                    echo '<a href="/administracija/izmeni-smestaj/idSmestaj/' . $ds['idSmestaj']. '">Izmeni</a>';
+                    echo '</td>';
+
+                    echo '</tr>';
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
+
+
+   

@@ -1,0 +1,38 @@
+<div id="wrapper" style="height: auto;">	
+<ul>
+<?php foreach ($this->kategorije as $stavka) {
+ echo '<a href="/aranzmani/index/idKategorija/'.$stavka['idKategorija'].'"><li>'.$stavka['naziv'].'</li></a>'; 
+}
+?>
+</ul>
+
+<?php 
+
+if($this->kategorija==''){
+    
+}else{
+    print '<br><br><br><br><h1 style="color:white;">'.$this->naslov['naziv']."</h1>";
+    
+    print'<div style="margin-top:150px;">';
+foreach ($this->kategorija as $stavka) {
+    
+        $small = substr($stavka['opis'], 0, 345);
+        ?>
+    
+        <h3> <?php print $stavka['smestaj']; ?></h3></br>
+        <div><img width="100px" height="80px" style="float: left; padding: 0 10px 10px 10px;" src="<?php print $stavka['thumbPutanja']; ?>"/></div> 
+        <p style="padding-left: 10px;padding-right: 80px; text-align: justify;"><?php print $small; ?>...</p>
+
+
+        <div style="margin-left:110px;">
+            <br>
+            <a style="text-decoration: none; color:red;" href="/aranzmani/prikaz/idSmestaj/<?php print $stavka['idSmestaj']; ?>" ><b>opširnije...</b></a><br><br>
+        </div>
+  
+        <?php
+    }print '</div>';
+   
+    }
+    ?>
+
+</div>

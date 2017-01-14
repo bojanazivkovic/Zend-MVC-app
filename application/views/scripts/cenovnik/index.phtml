@@ -1,0 +1,26 @@
+<div id="wrapper">
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+<div class="cenovnik">
+    <table class="table table-striped">
+        <tbody>
+ <tr>
+ <th>Destinacija</th>
+  <th>Smestaj - tip smestaja</th>
+  
+ <th>Termin od - do</th>
+ <th>Cena</th>
+ </tr>
+ <?php foreach($this->cenovnik as $stavka) {?>
+
+ <tr>
+     <td><?php print $stavka['mesto'];?></td>
+     <td><?php print $stavka['smestaj'];?> - <?php print $stavka['vrstaSmestaja'];?></td>
+     
+     
+ <td><?php print $stavka['od'];?> - <?php print $stavka['do'];?></td>
+ <td><?php print $stavka['cena']." din";?></td>
+ </tr>
+ <?php } ?>
+        </tbody>
+ </table>
+</div></div>

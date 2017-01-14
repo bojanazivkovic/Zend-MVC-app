@@ -1,0 +1,127 @@
+<div class="col-xs-12 col-sm-6 col-lg-6" >
+    <h3>Unesi novu kategoriju</h3>
+    <?php echo $this->kategorijaform; ?>
+</div>
+<div class="col-xs-6 col-lg-6">
+   
+     <table class="table">
+      <thead>
+          <tr>
+            <th><i>Kategorija</i></th>           
+          </tr>
+      </thead>
+      <tbody>
+                                
+        <?php
+        foreach ($this->dohvati_kategorije as $ds) {
+            echo ' <tr class="table-striped">';
+            echo '<td class="kategorija">';
+            echo $ds['naziv'];
+            echo '</td>';
+            echo '<td>';
+            echo '<a href="/administracija/obrisi-kategoriju/idKategorija/' . $ds['idKategorija'] . '">Obriši</a>';
+            echo '</td>';
+            echo '</tr>';
+        }
+        ?>
+        </tbody>
+    </table>
+    
+</div>
+
+
+<div class="col-xs-12 col-sm-6 col-lg-6">
+    <h3>Unesi novu drzavu</h3>
+    <?php echo $this->drzavaform; ?>
+</div>
+<div class="col-xs-6 col-lg-6">
+   
+     <table class="table">
+      <thead>
+          <tr>
+            <th><i>Drzava</i></th>           
+          </tr>
+      </thead>
+      <tbody>
+                                
+        <?php
+        foreach ($this->dohvati_drzave as $ds) {
+            echo ' <tr class="table-striped">';
+            echo '<td>';
+            echo $ds['drzava'];
+            echo '</td>';
+            echo '<td>';
+            echo '<a href="/administracija/obrisi-drzavu/idDrzava/' . $ds['idDrzava'] . '">Obriši</a>';
+            echo '</td>';
+            echo '</tr>';
+        }
+        ?>
+        </tbody>
+    </table>
+    
+</div>
+ 
+
+<div class="col-xs-12 col-sm-6 col-lg-6">
+    <h3>Unesi novo mesto</h3>
+    <?php echo $this->mestoform; ?>
+</div>
+<div class="col-xs-6 col-lg-6">
+   
+     <table class="table">
+      <thead>
+          <tr>
+            <th><i>Mesto</i></th>           
+          </tr>
+      </thead>
+      <tbody>
+                                
+        <?php
+        foreach ($this->dohvati_mesta as $ds) {
+            echo ' <tr class="table-striped">';
+            echo '<td>';
+            echo $ds['mesto'];
+            echo '</td>';
+            echo '<td>';
+            echo '<a href="/administracija/obrisi-mesto/idMesto/' . $ds['idDrzava'] . '">Obriši</a>';
+            echo '</td>';
+            echo '</tr>';
+        }
+        ?>
+        </tbody>
+    </table>
+    
+</div>
+
+
+
+<div class="col-xs-12 col-sm-6 col-lg-6">
+    <h3>Unesi novu cenu</h3>
+    <?php echo $this->cenaform; ?>
+</div>
+<div class="col-xs-6 col-lg-6">
+   
+    <table class="table">
+      <thead>
+          <tr>
+            <th><i>Cena</i></th>           
+          </tr>
+      </thead>
+      <tbody>
+                                
+        <?php
+        foreach ($this->dohvati_cene as $ds) {
+            echo ' <tr class="table-striped">';
+            echo '<td>';
+            echo $ds['cena'];
+            echo '</td>';
+            echo '<td>';
+            echo '<a href="/administracija/obrisi-cenu/idCenovnik/' . $ds['idCenovnik'] . '">Obriši</a>';
+            echo '</td>';
+            echo '</tr>';
+        }
+        ?>
+        </tbody>
+    </table>
+    
+</div>

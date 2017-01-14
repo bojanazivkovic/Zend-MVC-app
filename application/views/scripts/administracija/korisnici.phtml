@@ -1,0 +1,100 @@
+<div style="align:center;margin-left: 50px;">
+ 
+   <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            <i> Ime i prezime korisnika </i>
+                        </th>
+                        <th>
+                            <i> Korisnicko ime </i>
+                        </th>
+                        <th>
+                            <i> Telefon </i>
+                        </th>
+                        <th>
+                            <i> Izmeni </i>
+                        </th>
+                        <th>
+                            <i> Obriši </i>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    foreach ($this->dohvati_korisnike as $ds) {
+                        echo '<tr class="table-striped">';
+                        echo '<td class="imeKorisnika" style="width:10%; border: 1px solid black;">';
+                        echo $ds['imePrezime'];
+                        echo '</td>';
+
+                        echo '<td class="kimeKorisnika" style="width:10%; border: 1px solid black;">';
+                        echo $ds['korisnickoIme'];
+                        echo '</td>';
+
+                        echo '<td class="telKorisnika" style="width:10%; border: 1px solid black;">';
+                        echo $ds['telefon'];
+                        echo '</td>';
+
+                        echo '<td style="width:10%; border: 1px solid black;">';
+                        echo '<a class="edit" href="javascript:void(0);">Izmeni</a> <button class="save" style="display:none;" idKorisnik="save_' . $ds['idKorisnik'] . '">Zapamti</button>';
+                        echo '</td>';
+
+                        echo '<td style="width:10%; border: 1px solid black;">';
+                        echo '<a href="/administracija/obrisi-korisnika/idKorisnik/' . $ds['idKorisnik'] . '" onclick="return
+confirm(' . "'Da li ste sigurni?'" . ');">Delete</a>';
+                        echo '</td>';
+
+                        echo '</tr>';
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+
+        <br><br><br>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script>
+            $('.edit').click(function () {
+                $(this).hide();
+                $(this).parent().find(".save").show();
+
+                var ime = $(this).parent().parent().find('.imeKorisnika');
+                var kime = $(this).parent().parent().find('.kimeKorisnika');
+                var tel = $(this).parent().parent().find('.telKorisnika');
+
+
+                ime.html('<textarea name="ime" class="imeKorisnika" style="width:50%;height:50px;">' + ime.html() + '</textarea>');
+                kime.html('<textarea name="kime" class="kimeKorisnika" style="width:50%;height:50px;">' + kime.html() + '</textarea>');
+                tel.html('<textarea name="tel" class="telKorisnika" style="width:50%;height:50px;">' + tel.html() + '</textarea>');
+            });
+
+            $('.save').click(function () {
+                var save = $(this);
+                var ime = $(this).parent().parent().find('.imeKorisnika');
+                var kime = $(this).parent().parent().find('.kimeKorisnika');
+                var tel = $(this).parent().parent().find('.telKorisnika');
+
+
+                var idKorisnik = save.attr('idKorisnik').split('_');
+
+                $.post("/administracija/izmeni-korisnika", {idKorisnik: idKorisnik[1], ime: ime.find("textarea").val(), kime: kime.find("textarea").val(), tel: tel.find("textarea").val()}, function (data) {
+                    if (data) {
+                        alert("Korisnik je uspesno izmenjen.");
+                        ime.html(ime.find("textarea").val());
+                        kime.html(kime.find("textarea").val());
+                        tel.html(tel.find("textarea").val());
+
+
+                        save.hide();
+                        save.parent().find(".edit").show();
+                    } else {
+                        alert("Nije uneto!");
+                    }
+
+
+                });
+
+            });
+        </script>

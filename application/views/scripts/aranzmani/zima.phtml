@@ -1,0 +1,39 @@
+<br/><br/>
+<div class="smestaj" style="height: 1000px">
+<h1>ZIMOVANJE</h1>
+<br><br>
+
+   
+
+    
+<?php foreach ($this->zima as $stavka) {
+    $small = substr($stavka['opis'], 0, 300);?>
+
+  <h3> <?php print $stavka['smestaj']; ?></h3></br>
+      <div><img width="100px" height="100px" style="float: left; padding: 0 10px 10px 10px;" src="<?php print $stavka['thumbPutanja']; ?>"></img></div> 
+
+    <p><?php print $small; ?>...</p>
+   
+    
+    <div style="margin-left:110px;"><br>
+        <a href="/aranzmani/prikaz/idSmestaj/<?php print $stavka['idSmestaj'];?>" ><b>OPSIRNIJE...</b></a><br><br>
+    </div>
+
+    <?php
+}
+?>
+</div>
+
+
+
+</br>
+<p style="margin:0px auto;display:block;text-align:center;clear:both;">
+        <br/>
+    <a href="<?php echo $this->url(array('controller' => 'aranzmani', 'action' => 'zima', 'strana' => $this->previousPage))
+?>"> Predhodna </a>
+       <?php echo "" . $this->currentPage . "/" . $this->countPages; ?>
+    <a href="<?php echo $this->url(array('controller' => 'aranzmani', 'action' => 'zima', 'strana' => $this->nextPage))
+       ?>"> Sledeća </a>
+    <br/>
+</p>
+

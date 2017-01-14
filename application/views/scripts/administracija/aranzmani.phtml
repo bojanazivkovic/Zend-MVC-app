@@ -1,0 +1,142 @@
+<div class="table-responsive">
+<?php echo $this->form; ?>
+    <br><br>
+   <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+            <th>
+                <i>Kategorija</i>
+            </th>
+            <th>
+                <i>Smestaj</i>
+            </th>
+            <th>
+                <i> Vrsta smestaja </i>
+            </th>
+            <th>
+                <i> Termin od </i>
+            </th>
+            <th>
+                <i>Termin do </i>
+            </th>
+            <th>
+                <i>Prevoz</i>
+            </th>
+            <th>
+                <i>Cena</i>
+            </th>
+            <th>
+                <i>Obrisi</i>
+            </th>
+
+
+        </tr>
+                        </thead>
+                        
+                        <tbody>
+                                
+        <?php
+        foreach ($this->dohvati_aranzmane as $ds) {
+            echo ' <tr class="table-striped">';
+            echo '<td class="kategorija">';
+            echo $ds['naziv'];
+            echo '</td>';
+            echo '<td class="smestajIme">';
+            echo $ds['smestaj'];
+            echo '</td>';
+            echo '<td class="tip">';
+            echo $ds['vrstaSmestaja'];
+            echo '</td>';
+            echo '<td class="terminOd">';
+            echo $ds['od'];
+            echo '</td>';
+            echo '<td class="terminDo">';
+            echo $ds['do'];
+            echo '</td>';
+            echo '<td class="prevozNaziv">';
+            echo $ds['prevoz'];
+            echo '</td>';
+            echo '<td class="cena_smestaja">';
+            echo $ds['cena'];
+            echo '</td>';
+
+
+            echo '<td>';
+            echo '<a href="/administracija/obrisi-aranzman/idAranzman/' . $ds['idAranzman'] . '" onclick="return
+confirm(' . "'Da li ste sigurni?'" . ');">Obriši</a>';
+            echo '</td>';
+            /*echo '<td>';
+            echo '<a class="edit" href="javascript:void(0);">Izmeni</a> <button class="save" style="display:none;" idAranzman="save_' . $ds['idAranzman'] . '">Zapamti</button>';
+            echo '</td>';*/
+
+            echo '</tr>';
+        }
+        ?>
+                            </tbody>
+    </table>
+
+</div>
+
+<br><br><br>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    $('.edit').click(function () {
+        $(this).hide();
+        $(this).parent().find(".save").show();
+
+        var kategorija = $(this).parent().parent().find('.naziv');
+        var smestaj = $(this).parent().parent().find('.smestajIme');
+        var vrsta = $(this).parent().parent().find('.tip');
+        var od = $(this).parent().parent().find('.terminOd');
+        var tdo = $(this).parent().parent().find('.terminDo');
+        var prevoz = $(this).parent().parent().find('.prevozNaziv');
+        var cena = $(this).parent().parent().find('.cena_smestaja');
+
+
+
+
+        kategorija.html('<textarea name="kategorija" class="naziv" style="width:100%;height:100px;">' + kategorija.html() + '</textarea>');
+        smestaj.html('<textarea name="smestaj" class="smestajIme" style="width:100%;height:100px;">' + smestaj.html() + '</textarea>');
+        vrsta.html('<textarea name="vrsta" class="tip" style="width:100%;height:100px;">' + vrsta.html() + '</textarea>');
+        od.html('<textarea name="od" class="terminOd" style="width:100%;height:100px;">' + od.html() + '</textarea>');
+        tdo.html('<textarea name="tdo" class="terminDo" style="width:100%;height:100px;">' + tdo.html() + '</textarea>');
+        prevoz.html('<textarea name="prevoz" class="prevozNaziv" style="width:100%;height:100px;">' + prevoz.html() + '</textarea>');
+        cena.html('<textarea name="cena" class="cena_smestaja" style="width:100%;height:100px;">' + cena.html() + '</textarea>');
+
+    });
+
+    $('.save').click(function () {
+        var save = $(this);
+        var kategorija = $(this).parent().parent().find('.naziv');
+        var smestaj = $(this).parent().parent().find('.smestajIme');
+        var vrsta = $(this).parent().parent().find('.tip');
+        var od = $(this).parent().parent().find('.terminOd');
+        var tdo = $(this).parent().parent().find('.terminDo');
+        var prevoz = $(this).parent().parent().find('.prevozNaziv');
+        var cena = $(this).parent().parent().find('.cena_smestaja');
+
+        var idAranzman = save.attr('idAranzman').split('_');
+
+        $.post("/administracija/izmeni-aranzman", {idAranzman: idAranzman[1], kategorija: kategorija.find("textarea").val(), smestaj: smestaj.find("textarea").val(), vrsta: vrsta.find("textarea").val, od: od.find("textarea").val(), tdo: tdo.find("textarea").val(), prevoz: prevoz.find("textarea").val(), cena: cena.find("textarea").val()}, function (data) {
+            if (data) {
+                alert("Cenovnik je uspesno izmenjen.");
+                kategorija.html(kategorija.find("textarea").val());
+                smestaj.html(smestaj.find("textarea").val());
+                vrsta.html(vrsta.find("textarea").val());
+                od.html(od.find("textarea").val());
+                tdo.html(tdo.find("textarea").val());
+                prevoz.html(prevoz.find("textarea").val());
+                cena.html(cena.find("textarea").val());
+
+                save.hide();
+                save.parent().find(".edit").show();
+            } else {
+                alert("Nije uneto!");
+            }
+
+
+        });
+
+    });
+</script>

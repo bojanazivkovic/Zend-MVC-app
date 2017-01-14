@@ -1,0 +1,29 @@
+<script>
+    lightbox.option({
+      'resizeDuration': 200,
+      'wrapAround': true
+    })
+</script>
+<link href="/js/lightbox.css" rel="stylesheet">
+<script src="/js/lightbox-plus-jquery.js"></script>
+
+<div style="align:center; margin-left: 50px; margin-right: 50px;height: 1000px;">
+    <br><br>
+
+    <h2><?php print $this->novagodina['smestaj']; ?></h2><br>
+    <?php print $this->novagodina['opis']; ?>
+    <br>
+    </br>
+    
+    
+    <h2>Galerija</h2>
+    <hr>
+    </br>
+
+    <?php foreach ($this->slike as $slike) { ?>
+
+      <a href="<?php print $slike['putanja']; ?>" data-lightbox="roadtrip"><img width="200px" height="150px" src="<?php print $slike['putanja']; ?>"></img></a>
+    <?php } ?>
+    </br>
+    </br>
+</div>

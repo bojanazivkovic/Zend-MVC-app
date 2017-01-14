@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <?php echo $this->headMeta(); ?>
+        <?php echo $this->headTitle(); ?>
+        <?php print $this->headLink(); ?>
+
+    </head>
+
+    <body>
+        <div id="header">																																																																																																																																																			<div class="inner_copy"><a href="http://ecommercebuilders.blogspot.com/2016/07/shopify-review.html">http://ecommercebuilders.blogspot.com/2016/07/shopify-review.html</a></div>
+            <a href="/" class="logo"><img src="/images/logoAdventure.png" alt="" /></a>																																								
+            <div>
+                <?php
+                $ulogovan = Zend_Auth::getInstance();
+                $user = $ulogovan->getIdentity()->idUloga;
+                $userIme = $ulogovan->getIdentity()->imePrezime;
+
+                if ($ulogovan->hasIdentity() && $user == 1) {
+
+                    $admin1 = '<a href="/administracija" title=""><i class="fa fa-desktop "></i> Administracija sajta | </a>';
+                    $admin2 = '<a href="/prodaja" title=""><i class="fa fa-table "></i> Prodaja aranzmana | </a>';
+                }
+                if ($ulogovan->hasIdentity() && $user == 3) {
+
+                    $prodaja = '<a href="/prodaja" title="">Prodaja aranzmana | </a>';
+                }
+                if ($ulogovan->hasIdentity() && $user == 2) {
+
+                    $putnici = '<a href="/rezervacije" title=""><i class="fa fa-edit "></i> REZERVISI ARANZMAN | </a>';
+                }
+
+                if (!$ulogovan->hasIdentity()) {
+
+                    $def = '<a href="/login" alt="Login">LOGIN </a>';
+                    ?>
+
+                    <?php
+                } else {
+                    $userrr = 'Zdravo <b>' . $userIme . '</b>';
+                    $out = '<a href="/login/logout" alt="LOGOUT" style="color:#000;">LOGOUT</a>';
+                }
+                ?>
+
+                <ul id="desno_gore">
+                    <li><?php echo $userrr; ?></li><br>
+                    <li><?php echo $admin1; ?></li>
+                    <li><?php echo $admin2; ?></li>
+                    <li><?php echo $prodaja; ?></li>
+                    <li><?php echo $putnici; ?></li>
+                    <li><?php echo $def; ?></li>
+                    <li><?php echo $out; ?></li>
+
+
+                </ul>
+
+
+            </div>
+
+            <ul id="menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/onama">O nama</a></li>
+                <?php
+                $aranzmani = new Application_Model_Aranzmani();
+                $kategorije = $aranzmani->get_kategorije();
+                foreach ($kategorije as $kat) {
+                    echo '<a href="/aranzmani/index/idKategorija/' . $kat['idKategorija'] . '"><li>' . $kat['naziv'] . '</li></a>';
+                }
+                ?>
+
+                <li><a href="/cenovnik">Cenovnik</a></li>
+                <li><a href="/kontakt">Kontakt</a></li>
+            </ul>
+        </div>
+        <!-- kraj hedera -->  
+
+
+
+
+
+        <?php echo $this->layout()->content; ?>
+
+
+
+
+
+        <!-- pocetak futera -->
+        <div id="footer">																																																																																																																																																																																																																																																							<div class="inner_copy"><a href="http://www.huffingtonpost.com/alex-ivanovs/wysiwyg-website-builders_b_8814882.html">WYSIWYG Website Builders for Online Business</a></div>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/onama">O nama</a></li>
+                <?php
+                $aranzmani = new Application_Model_Aranzmani();
+                $kategorije = $aranzmani->get_kategorije();
+                foreach ($kategorije as $kat) {
+                    echo '<li><a href="/aranzmani/index/idKategorija/' . $kat['idKategorija'] . '">' . $kat['naziv'] . '</a></li>';
+                }
+                ?>
+                <li><a href="/cenovnik">Cenovnik</a></li>
+                <li><a href="/kontakt">Kontakt</a></li>
+            </ul>
+            <p>Copyright &copy;. All rights reserved. <a href="http://www.adventuretours.rs" title="Adventure tours" class="bft">Adventure tours</a></p>																																																			
+        </div>
+    </body>
+</html>

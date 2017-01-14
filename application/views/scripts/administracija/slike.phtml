@@ -1,0 +1,49 @@
+<!--<h2 style="color: red;">promeniti da moze da se upload-uje vise slika odjednom,...resenje pogledati na ovom 
+    <b><a href="http://stackoverflow.com/questions/9917188/multi-picture-upload-in-zend-framework-how-to">linku</a></b>
+
+</h2>-->
+<div style="align:center;margin-left: 50px;">  
+    <?php echo $this->status; ?>
+    <?php echo $this->formaslike; ?>
+
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+
+                    <th>
+                        <i> Smestaj </i>
+                    </th>
+                    <th>
+                        <i> Putanja </i>
+                    </th>
+                    <th>
+                        <i> Obriši </i>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+
+                <?php
+                foreach ($this->dohvati_slike as $ds) {
+                    echo '<tr class="table-striped">';
+
+                    echo '<td width="200px" style="border: 1px solid black;">';
+                    echo $ds['smestaj'];
+                    echo '</td>';
+                    echo '<td width="400px" style="border: 1px solid black;">';
+                    echo $ds['putanja'];
+                    echo '</td>';
+                    echo '<td width="70px" style="border: 1px solid black;">';
+                    echo '<a href="/administracija/obrisi-slike/idSlike/' . $ds['idSlike'] . '" onclick="return
+confirm(' . "'Da li ste sigurni?'" . ');">Delete</a>';
+                    echo '</td>';
+
+                    echo '</tr>';
+                }
+                ?></tbody>
+        </table>
+    </div>
+    <br><br><br>

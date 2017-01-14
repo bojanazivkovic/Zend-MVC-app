@@ -1,0 +1,13 @@
+<div id="wrapper">	
+    <div class="onama">
+ <?php foreach($this->onama as $stavka) {?>
+    <h1 style="color:white;"><?php print $stavka['naslov'];?></h1>
+<br><br><br><br><br><br>
+<img src="<?php print $stavka['slika'];?>" style="width: 30%;height: 30%;float: left;padding-right: 10px ;border-radius: 5%;"/>
+<br><br><br><br>
+<div style="background-color: white; padding-right: 30px; text-align: justify;"><?php print $stavka['tekst'];?></div>
+ <?php } ?>
+ 
+</div>
+
+</div>

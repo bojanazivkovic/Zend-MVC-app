@@ -1,0 +1,50 @@
+<div style="align:center;margin-left: 50px;">  
+     <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+            <th>
+                <i> Ime i prezime </i>
+            </th>
+            <th>
+                <i> Smestaj </i>
+            </th>
+            <th>
+                <i> Termin od</i>
+            </th>
+             <th>
+                <i> Termin do</i>
+            </th>
+            <th>
+                <i> Obriši </i>
+            </th>
+        </tr>
+                        </thead>
+                        
+                         <tbody>
+        <?php
+        foreach ($this->dohvati_termine as $ds) {
+            echo '<tr class="table-striped">';
+            echo '<td width="20%" style="border: 1px solid black;">';
+            echo $ds['imePrezime'];
+            echo '</td>';
+            echo '<td width="60%" style="border: 1px solid black;">';
+            echo $ds['smestaj'];
+            echo '</td>';
+            echo '<td width="5%" style="border: 1px solid black;">';
+            echo $ds['od'];
+            echo '</td>';
+            echo '<td width="5%" style="border: 1px solid black;">';
+            echo $ds['do'];
+            echo '</td>';
+            echo '<td width="10%" style="border: 1px solid black;">';
+            echo '<a href="/administracija/obrisi-termin/idRezervacije/' . $ds['idRezervacije'] . '" onclick="return
+confirm(' . "'Da li ste sigurni?'" . ');">Delete</a>';
+            echo '</td>';
+
+            echo '</tr>';
+        }
+        ?></tbody>
+    </table>
+</div>
+<br><br><br>
