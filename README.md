@@ -1,4 +1,4 @@
-# Zend-MVC-app
+# Zend-MVC-app for Travel agency (CMS)
 
 Welcome to the Zend Framework 1.9 Release! 
 
